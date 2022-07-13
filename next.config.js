@@ -5,4 +5,5 @@ module.exports = {
     domains: ['nextui.org'],
   },
   reactStrictMode: true,
+  output: 'standalone',
 }

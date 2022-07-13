@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 export interface Props {
@@ -32,7 +33,7 @@ const PlaceholderBlock: React.FC<Props> = ({
 }) => {
   return (
     <div className={className} style={{ width, height }} {...props}>
-      <img
+      <Image
         alt={alt}
         src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
       />

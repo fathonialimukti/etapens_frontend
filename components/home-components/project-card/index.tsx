@@ -1,11 +1,11 @@
-import Project from "interface/Project";
 import { Card, Text, Col, Row, Spacer } from '@nextui-org/react'
 import { darkTheme, lightTheme } from 'theme';
 import { useRouter } from 'next/router'
+import Frontend from 'interface/Frontend';
 
 
 
-export default function Components({ project }: { project: Project }) {
+export default function Components({ project }: { project: Frontend }) {
     const router = useRouter()
 
     return (
