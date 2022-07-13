@@ -1,7 +1,7 @@
 import { UserIcon } from '../icons';
 import { darkTheme } from 'theme';
 import { useSession, signIn, signOut } from "next-auth/react"
-import { Dropdown, User, keyframes, Button, Link, Spacer } from "@nextui-org/react";
+import { Dropdown, User, keyframes, Button, Link } from "@nextui-org/react";
 
 export default function Components() {
     const { data: session } = useSession()
@@ -27,9 +27,9 @@ export default function Components() {
                     bordered
                     as="button"
                     size="lg"
-                    name={session.user?.name}
-                    description={session.user?.email}
-                    src={session?.user?.image}
+                    name={session?.user?.name}
+                    description={session?.user?.email || ''}
+                    src={session?.user?.image || ''}
                     />
                 </Dropdown.Trigger>
                 <Dropdown.Menu color="primary" aria-label="User Actions">
@@ -37,7 +37,7 @@ export default function Components() {
                         <Link href='/user'>Dashboard</Link>
                     </Dropdown.Item>
                     <Dropdown.Item  key="logout" color="error"> {/* onAction={()=>signOut()} */}
-                        <p onPress={()=>signOut()}>Logout</p>
+                        <p onClick={()=>signOut()}>Logout</p>
                         </Dropdown.Item>
                     <Dropdown.Item key="help" withDivider>
                         Help

@@ -26,19 +26,7 @@ const Navbar = () => {
                 <Container alignItems='center'>
                     <Col>
                         <Row justify="flex-end" align="center">
-                            <ThemeToggle
-                                css={{
-                                    m: '0 6px',
-                                    '& svg': {
-                                    transition: '$default'
-                                    },
-                                    '&:hover': {
-                                    '& svg': {
-                                        opacity: 0.7
-                                    }
-                                    }
-                                }}
-                            />
+                            <ThemeToggle/>
                             <Spacer x={0.5} />
                             <LoginBtn />
                         </Row>

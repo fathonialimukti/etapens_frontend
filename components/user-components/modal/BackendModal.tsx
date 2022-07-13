@@ -3,15 +3,20 @@ import Backend from "interface/Backend";
 import { useState } from "react";
 
 export default function BackendModal({ modal, setModal, userId }: { modal: any, setModal: any, userId: string }) {
-  let backend: Backend = {
-    creator: userId
-  }
+  let backend: Backend;
   const [message, setMessage] = useState<string>();
   const [loading, setLoading] = useState<boolean>(false)
 
   const handleSubmit = async () => {
     setLoading(true);
-    c
+    backend.creator = userId;
+    await fetch("http://localhost:4000/project?type=backend", {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(backend),
+      })
       .then((res) => res.json())
       .then((data) => {
         if (!data.message) setMessage("Registration success, Deploying...");

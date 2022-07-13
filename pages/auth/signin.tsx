@@ -1,7 +1,8 @@
 import { Button } from "@nextui-org/react"
+import { Provider } from "next-auth/providers"
 import { getProviders, signIn } from "next-auth/react"
 
-export default function SignIn({ providers }) {
+export default function SignIn({ providers }: { providers: Provider }) {
   return (
     <>
       {Object.values(providers).map((provider) => (
@@ -13,7 +14,7 @@ export default function SignIn({ providers }) {
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context:any) {
   const providers = await getProviders()
   return {
     props: { providers },

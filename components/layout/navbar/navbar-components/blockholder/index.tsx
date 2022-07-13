@@ -35,6 +35,7 @@ const PlaceholderBlock: React.FC<Props> = ({
     <div className={className} style={{ width, height }} {...props}>
       <Image
         alt={alt}
+        layout='fill'
         src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
       />
       <style jsx>

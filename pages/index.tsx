@@ -73,7 +73,7 @@ const Home: NextPage = () => {
             </Grid.Container>
           </Grid>
           <Grid lg={3} md sm xs={12}>
-            <PostWidget query={query} setQuery={setQuery} />
+            <PostWidget setQuery={setQuery} />
           </Grid>
 
           <Grid lg={12} md={12} sm={12} justify="center" css={{ zIndex:"$2" }}>

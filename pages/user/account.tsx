@@ -6,13 +6,13 @@ import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 export default function Component() {
-    const [user, setUser] = useState<User>();
+    let user: User;
     const [visible, setVisible] = useState(false);
     const router = useRouter();
 
     const loadSession = async () => {
         const session = await getSession();
-        setUser({ email: session.user.email });
+        user.email = session!.user!.email!;
     }
 
     useEffect(() => { loadSession() }, []);
@@ -29,7 +29,7 @@ export default function Component() {
         }
         const response = await fetch(endpoint, options)
         const result: User = await response.json()
-        setUser(result)
+        user = result;
         setVisible(true);
     }
 
@@ -40,7 +40,7 @@ export default function Component() {
 
     return (
         <>
-        <Container justify="center" align="center">
+        <Container justify="center" alignContent="center">
             <Spacer y={2} />
             <Card
             isHoverable
@@ -64,13 +64,13 @@ export default function Component() {
             variant="bordered"
             >
                 <Card.Body>
-                    <Input labelLeft="Email" aria-label="email" readOnly underlined initialValue={user?.email} />
-                    <Input labelLeft="Name" aria-label="name" underlined onChange={ e => setUser({ ...user, name: e.target.value })} />
-                    <Input labelLeft="NRP" aria-label="nrp" type="number" underlined onChange={ e => setUser({ ...user, nrp: e.target.value })} />
+                    <Input labelLeft="Email" aria-label="email" readOnly underlined initialValue={user!.email} />
+                    <Input labelLeft="Name" aria-label="name" underlined onChange={ e => user.name = e.target.value } />
+                    <Input labelLeft="NRP" aria-label="nrp" type="number" underlined onChange={ e => user.nrp = e.target.value } />
                     <Spacer y={0.5} />
-                    <Input label="Image" aria-label="image" underlined type="file" onChange={ e => setUser({ ...user, image: e.target.value })}/>
+                    <Input label="Image" aria-label="image" underlined type="file" onChange={ e => user.image = e.target.value }/>
                     <Spacer y={0.5} />
-                    <Textarea label="About" aria-label="about" onChange={ e => setUser({ ...user, about: e.target.value })} placeholder="Tells something about you."/>
+                    <Textarea label="About" aria-label="about" onChange={ e => user.about = e.target.value } placeholder="Tells something about you."/>
                     <Spacer y={3} />
                     <Button aria-label="submit" onPress={handleSubmit}>Submit</Button>
                 </Card.Body>
@@ -86,11 +86,11 @@ export default function Component() {
                 <Text id="modal-title" size={18}>Success</Text>
             </Modal.Header>
             <Modal.Body>
-                <Input labelLeft="Email" aria-label="email" readOnly initialValue={user?.email} />
-                <Input labelLeft="Name" aria-label="email" readOnly initialValue={user?.name} />
-                <Input labelLeft="Nrp" aria-label="email" readOnly initialValue={user?.nrp} />
-                <Input labelLeft="Image" aria-label="email" readOnly initialValue={user?.image} />
-                <Textarea label="About" aria-label="email" readOnly initialValue={user?.about} />
+                <Input labelLeft="Email" aria-label="email" readOnly initialValue={user!.email} />
+                <Input labelLeft="Name" aria-label="email" readOnly initialValue={user!.name} />
+                <Input labelLeft="Nrp" aria-label="email" readOnly initialValue={user!.nrp} />
+                <Input labelLeft="Image" aria-label="email" readOnly initialValue={user!.image} />
+                <Textarea label="About" aria-label="email" readOnly initialValue={user!.about} />
             </Modal.Body>
             <Modal.Footer>
             <Button auto flat color="error" onPress={closeHandler}>

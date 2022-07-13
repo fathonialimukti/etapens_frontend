@@ -3,9 +3,7 @@ import Database from "interface/Database";
 import { useState, useMemo } from "react";
 
 export default function DatabaseModal({ modal, setModal, userId }: { modal: any, setModal: any, userId: string }) {
-  const database: Database = {
-    creator: userId,
-  }
+  let database: Database;
   const [selected, setSelected] = useState(new Set(["Database Type"]));
   const [message, setMessage] = useState<string>()
   const [loading, setLoading] = useState<boolean>(false)
@@ -18,8 +16,8 @@ export default function DatabaseModal({ modal, setModal, userId }: { modal: any,
 
   const handleSubmit = async () => {
     setLoading(true);
+    database.creator = userId;
     database.type = selectedValue;
-    console.log(database);
     const JSONdata = JSON.stringify( database );
     const endpoint = 'http://localhost:4000/project?type=database'
     const options = {
@@ -64,7 +62,7 @@ export default function DatabaseModal({ modal, setModal, userId }: { modal: any,
               disallowEmptySelection
               selectionMode="single"
               selectedKeys={selected}
-              onSelectionChange={setSelected}
+              onSelectionChange={()=>setSelected}
             >
               <Dropdown.Item key="mysql">Mysql</Dropdown.Item>
               <Dropdown.Item key="postgresql">Postgresql</Dropdown.Item>

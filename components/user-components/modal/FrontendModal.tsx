@@ -3,14 +3,13 @@ import Frontend from "interface/Frontend";
 import { useState } from "react";
 
 export default function FrontendModal({ modal, setModal, userId }: { modal: any, setModal: any, userId: string }) {
-  let frontend: Frontend = {
-    creator: userId
-  }
+  let frontend: Frontend;
   const [message, setMessage] = useState<string>();
   const [loading, setLoading] = useState<boolean>(false)
 
   const handleSubmit = async () => {
     setLoading(true);
+    frontend.creator = userId;
     await fetch("http://localhost:4000/project?type=frontend", {
         method: 'POST',
         headers: {
@@ -73,9 +72,9 @@ export default function FrontendModal({ modal, setModal, userId }: { modal: any,
         <Input clearable underlined required aria-label="description" labelLeft="Description" onChange={e => {frontend.description = e.target.value }} />
         <Input clearable underlined required aria-label="sourceCode" labelLeft="Source_Code" onChange={e => {frontend.sourceCode = e.target.value }} />
         <Input clearable underlined required aria-label="documentUrl" labelLeft="documentUrl" onChange={e => {frontend.documentUrl = e.target.value }} />
-        <Input clearable underlined required aria-label="images" labelLeft="images" onChange={e => {frontend.images = e.target.value }} />
+        {/* <Input clearable underlined required aria-label="images" labelLeft="images" onChange={e => {frontend.images = e.target.value }} />
         <Input clearable underlined required aria-label="tech" labelLeft="Tech_list" onChange={e => {frontend.tech = e.target.value }} />
-        <Input clearable underlined required aria-label="mentors" labelLeft="Mentors" onChange={e => {frontend.mentors = e.target.value }} />
+        <Input clearable underlined required aria-label="mentors" labelLeft="Mentors" onChange={e => {frontend.mentors = e.target.value }} /> */}
       </Modal.Body>
       <Modal.Footer>
         {loading ? null : <Button auto color="error" onPress={() => setModal({ ...modal, frontend: !modal.frontend })}>Close</Button>}

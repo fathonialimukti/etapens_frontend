@@ -2,8 +2,8 @@ import { useState, useMemo } from 'react';
 import { Card, Input, Spacer, Dropdown, Button } from '@nextui-org/react'
 import { darkTheme, lightTheme } from 'theme';
 
-export default function Components({ query, setQuery }) {
-    const [selected, setSelected] = useState(new Set());
+export default function Components({ setQuery }: { setQuery: any }) {
+    const [selected, setSelected] = useState<Set<string>>(new Set());
     const [title, setTitle] = useState<string>('');
 
     const selectedValue = useMemo(
@@ -54,7 +54,7 @@ export default function Components({ query, setQuery }) {
                         color="secondary"
                         selectionMode="multiple"
                         selectedKeys={selected}
-                        onSelectionChange={setSelected}
+                        onSelectionChange={()=>{setSelected}}
                     >
                         <Dropdown.Item key="php">php</Dropdown.Item>
                         <Dropdown.Item key="laravel">laravel</Dropdown.Item>
