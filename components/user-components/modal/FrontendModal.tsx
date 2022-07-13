@@ -3,7 +3,7 @@ import Frontend from "interface/Frontend";
 import { useState } from "react";
 
 export default function FrontendModal({ modal, setModal, userId }: { modal: any, setModal: any, userId: string }) {
-  let frontend: Frontend;
+  let frontend: Frontend = {};
   const [message, setMessage] = useState<string>();
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -68,7 +68,7 @@ export default function FrontendModal({ modal, setModal, userId }: { modal: any,
           </Text>
         </Modal.Header>
       <Modal.Body>
-        <Input clearable underlined required aria-label="title" labelLeft="Project_Title" onChange={e => {frontend.title = e.target.value }} />
+        <Input clearable underlined required aria-label="title" labelLeft="Project_Title" onChange={e => { frontend.title = e.target.value }} />
         <Input clearable underlined required aria-label="description" labelLeft="Description" onChange={e => {frontend.description = e.target.value }} />
         <Input clearable underlined required aria-label="sourceCode" labelLeft="Source_Code" onChange={e => {frontend.sourceCode = e.target.value }} />
         <Input clearable underlined required aria-label="documentUrl" labelLeft="documentUrl" onChange={e => {frontend.documentUrl = e.target.value }} />

@@ -39,18 +39,14 @@ export default function DatabaseCard({ database }: { database: Database }) {
                                 <Table.Cell><Text b>Status</Text></Table.Cell>
                                 <Table.Cell>{database.isActive ? <Text color="success">Active</Text> : 'Under review'}</Table.Cell>
                             </Table.Row>
-                            {database.note ? 
                             <Table.Row key="6">
-                                <Table.Cell><Text b>Status</Text></Table.Cell>
-                                <Table.Cell>{database.isActive ? <Text color="success">Active</Text> : 'Under review'}</Table.Cell>
-                            </Table.Row> : <></>
-                            }
-                            { database.url ? 
+                                <Table.Cell><Text b>Note</Text></Table.Cell>
+                                <Table.Cell>{database.note}</Table.Cell>
+                            </Table.Row>
                             <Table.Row key="7">
                                 <Table.Cell><Text b>Server IP</Text></Table.Cell>
                                 <Table.Cell>{database.url}</Table.Cell>
-                            </Table.Row> : <></>
-                            }
+                            </Table.Row>
                         </Table.Body>
                     </Table>
                 </Card.Body>

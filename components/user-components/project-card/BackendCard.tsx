@@ -6,17 +6,17 @@ export default function BackendCard({ backend }: { backend: Backend }) {
 
     }
     return (
-        <Container>
+        <Container fluid>
             <Popover isBordered disableShadow>
                 <Popover.Trigger>
-                    <Card css={{ zIndex: '$2', minWidth: '300px' }} isPressable>
+                    <Card css={{ zIndex: '$2' }} isPressable>
                         <Card.Body>
                         <Table
                         aria-label="Example table with static content"
                         shadow={false}
                         css={{
                             height: "auto",
-                            minWidth: "100%",
+                            maxWidth: "300px"
                         }}
                         >
                         <Table.Header>

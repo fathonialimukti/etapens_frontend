@@ -92,15 +92,15 @@ export default function Component() {
           <Button light color="warning" onPress={()=>{getUserProject()}} auto>Refresh</Button>
         </Row>
         <Spacer y={1} />
-        <Grid.Container>
-          {frontend ? <Grid><FrontendCard frontend={frontend}/></Grid> : null} 
-          {backend ? <Grid><BackendCard backend={backend}/></Grid> : null}  
-          {database ? <Grid><DatabaseCard database={database}/></Grid> : null}  
+        <Grid.Container gap={2}>
+          {frontend ? <Grid><FrontendCard frontend={frontend}/></Grid> : <></>} 
+          {backend ? <Grid><BackendCard backend={backend}/></Grid> : <></>}  
+          {database ? <Grid><DatabaseCard database={database}/></Grid> : <></>}  
         </Grid.Container>
       </Container>
-      <FrontendModal userId={user?._id} modal={modal} setModal={setModal} /> {/* frontend={frontend} setFrontend={setFrontend} /> */}
-      <BackendModal userId={user?._id} modal={modal} setModal={setModal} /> {/* backend={backend} setBackend={setBackend} /> */}
-      <DatabaseModal userId={user?._id} modal={modal} setModal={setModal} />  {/* database={database} setDatabase={setDatabase} */}
+      <FrontendModal userId={user!._id!} modal={modal} setModal={setModal} /> {/* frontend={frontend} setFrontend={setFrontend} /> */}
+      <BackendModal userId={user!._id!} modal={modal} setModal={setModal} /> {/* backend={backend} setBackend={setBackend} /> */}
+      <DatabaseModal userId={user!._id!} modal={modal} setModal={setModal} />  {/* database={database} setDatabase={setDatabase} */}
     </>
   );
 }
